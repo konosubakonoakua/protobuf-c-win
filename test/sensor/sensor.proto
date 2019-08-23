@@ -1,0 +1,56 @@
+syntax = "proto3";
+package sensor;
+
+//单相
+message SinglePhase{
+    int32 message_type = 1;   //消息类型:电流传感器（1）,温度（2）,电表（3）.....
+    string sn=2;//序列号
+    int32 phase=3;//相：A相(1),B相(2),C相(3)
+    float currentEffectiveValue=4;// 电流有效值
+    float batteryVoltage=5;//电压
+    float frequency=6;//频率
+    float temperature=7;// 温度
+    float humidity=8;//湿度
+    int32 activePower=9;//有功功率
+    int32 reactivePower=10;//无功功率
+    int32 apparentPower=11; //视在功率
+    int32 activeEnergy=12; //有功电能
+    int32 apparentEnergy=13; //视在电能
+    repeated int32 instantaneousCurrent=14;//瞬时电流
+};
+
+//三项或单项数组
+message ThreePhase{
+
+ repeated SinglePhase singlePhases=1; //SinglePhase类型的数组
+
+}
+//设备注册(激活):传感器，中继...
+message DeviceRegister{
+  string sn=1; //序列号
+  int32 device_type=2; //设备类型
+}
+//收到消息类型
+message Message{
+    int32 message_type=1;// 消息类型:SinglePhase类型(1)，ThreePhase类型(2)，传感器注册数据类型(3)....
+    SinglePhase singlePhase=2; // 单项传感器数据
+    ThreePhase threePhase=3; // 多项传感器数据
+    DeviceRegister register=4; // 注册信息
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

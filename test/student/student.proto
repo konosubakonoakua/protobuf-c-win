@@ -1,0 +1,12 @@
+syntax = "proto3";
+message Student
+{
+	string id = 1;
+	string name = 2;
+	string gender = 3;
+	int32 age = 4;
+	string object = 5;
+	string home_address = 6;
+	string phone = 7;
+}
+
